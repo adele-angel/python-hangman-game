@@ -17,67 +17,82 @@ print(HANGMAN_ASCII_ART)
 print("Tries:", MAX_TRIES)
 
 
-# Get user input
+# Get user guess
 guess = input("Guess a letter: ")
-print(guess.lower())
+# Input validation
+if guess.isalpha():
+	if len(guess) == 1:
+		print(guess.lower())
+	else:
+		print("E1")
+elif len(guess) > 1:
+	print("E3")
+else:
+	print("E2")
 
-# Hangman drawing
 
-# picture 1
-print("Picture 1")
-print("""    x-------x
-""")
 
-print("Picture 2")
-print("""    x-------x
-    |
-    |
-    |
-    |
-    |
-""")
+# guess = input("Please enter a word: ")
+# print("_ " * (len(guess) - 1) + "_")
 
-print("Picture 3")
-print("""    x-------x
-    |       |
-    |       0
-    |
-    |
-    |
-""")
 
-print("Picture 4")
-print("""    x-------x
-    |       |
-    |       0
-    |       |
-    |
-    |
-""")
+# # Hangman drawing
 
-print("Picture 5")
-print("""    x-------x
-    |       |
-    |       0
-    |      /|\\
-    |
-    |
-""")
+# # picture 1
+# print("Picture 1")
+# print("""    x-------x
+# """)
 
-print("Picture 6")
-print("""    x-------x
-    |       |
-    |       0
-    |      /|\\
-    |      /
-    |
-""")
+# print("Picture 2")
+# print("""    x-------x
+#     |
+#     |
+#     |
+#     |
+#     |
+# """)
 
-print("Picture 7")
-print("""    x-------x
-    |       |
-    |       0
-    |      /|\\
-    |      / \\
-    |
-""")
+# print("Picture 3")
+# print("""    x-------x
+#     |       |
+#     |       0
+#     |
+#     |
+#     |
+# """)
+
+# print("Picture 4")
+# print("""    x-------x
+#     |       |
+#     |       0
+#     |       |
+#     |
+#     |
+# """)
+
+# print("Picture 5")
+# print("""    x-------x
+#     |       |
+#     |       0
+#     |      /|\\
+#     |
+#     |
+# """)
+
+# print("Picture 6")
+# print("""    x-------x
+#     |       |
+#     |       0
+#     |      /|\\
+#     |      /
+#     |
+# """)
+
+# print("Picture 7")
+# print("""    x-------x
+#     |       |
+#     |       0
+#     |      /|\\
+#     |      / \\
+#     |
+# """)
