@@ -19,7 +19,7 @@ print("Tries:", MAX_TRIES)
 
 # Get user input
 guess = input("Guess a letter: ")
-print(guess)
+print(guess.lower())
 
 # Hangman drawing
 
