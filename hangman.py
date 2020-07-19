@@ -19,17 +19,21 @@ print("Tries:", MAX_TRIES)
 
 # Get user guess
 guess = input("Guess a letter: ")
+
 # Input validation
 if guess.isalpha():
-	if len(guess) == 1:
-		print(guess.lower())
-	else:
-		print("E1")
+   #  User typed a single valid letter
+    if len(guess) == 1:
+        print(guess.lower())
+   #  Error - user typed more then one letter
+    else:
+        print("E1")
+# Error - user typed invalid letter
 elif len(guess) > 1:
-	print("E3")
+    print("E3")
+#  Error - user typed more then one letter and invalid letter
 else:
-	print("E2")
-
+    print("E2")
 
 
 # guess = input("Please enter a word: ")
