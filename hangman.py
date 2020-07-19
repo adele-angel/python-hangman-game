@@ -1,16 +1,19 @@
 # Classic Hangman game built with Python 3.8.3
 
 
-def is_valid_input(letter_guessed):
-    '''Checks if input is a valid single alphanumeric character.
+def check_valid_input(letter_guessed, old_letters_guessed):
+    '''Recives a character and a list of letters that the user has previously guessed and checks if input is a valid.
+        valid input contains a single letter and is not included in old guesses.
 
-    :param letter_guessed: User input
+    :param letter_guessed: user input
+	:param old_letters_guessed: user previous guesses
     :type letter_guessed: str
+    :type old_letters_guessed: list
 
-    :returns: If the guessed letter is valid
+    :returns: if the current guessed letter is valid and not included in the list of the guessed letters
     :rtype: bool
     '''
-    return letter_guessed.isalpha() and len(letter_guessed) == 1
+    return letter_guessed.isalpha() and len(letter_guessed) == 1 and not letter_guessed in old_letters_guessed
 
 
 HANGMAN_ASCII_ART = """    _    _
@@ -26,14 +29,16 @@ HANGMAN_ASCII_ART = """    _    _
 def main():
     MAX_TRIES = 6
 
+    old_letters_guessed = ["f", "g"]
+
     # Print opening screen
     print(HANGMAN_ASCII_ART)
     # Print number of tries
     print("Tries:", MAX_TRIES)
 
     # Get user guess
-    guess = input("Guess a letter: ")
-    print(is_valid_input(guess))
+    letter_guessed = input("Guess a letter: ").lower()
+    print(check_valid_input(letter_guessed, old_letters_guessed))
 
 
 if __name__ == "__main__":
