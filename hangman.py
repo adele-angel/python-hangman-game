@@ -1,5 +1,18 @@
 # Classic Hangman game built with Python 3.8.3
 
+
+def is_valid_input(letter_guessed):
+    '''Checks if input is a valid single alphanumeric character.
+
+    :param letter_guessed: User input
+    :type letter_guessed: str
+
+    :returns: If the guessed letter is valid
+    :rtype: bool
+    '''
+    return letter_guessed.isalpha() and len(letter_guessed) == 1
+
+
 HANGMAN_ASCII_ART = """    _    _
    | |  | |
    | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __
@@ -9,36 +22,22 @@ HANGMAN_ASCII_ART = """    _    _
                         __/ |
                        |___/"""
 
-MAX_TRIES = 6
 
-# Print opening screen
-print(HANGMAN_ASCII_ART)
-# Print number of tries
-print("Tries:", MAX_TRIES)
+def main():
+    MAX_TRIES = 6
 
+    # Print opening screen
+    print(HANGMAN_ASCII_ART)
+    # Print number of tries
+    print("Tries:", MAX_TRIES)
 
-# Get user guess
-guess = input("Guess a letter: ")
-
-# Input validation
-if guess.isalpha():
-   #  User typed a single valid letter
-    if len(guess) == 1:
-        print(guess.lower())
-   #  Error - user typed more then one letter
-    else:
-        print("E1")
-# Error - user typed invalid letter
-elif len(guess) > 1:
-    print("E3")
-#  Error - user typed more then one letter and invalid letter
-else:
-    print("E2")
+    # Get user guess
+    guess = input("Guess a letter: ")
+    print(is_valid_input(guess))
 
 
-# guess = input("Please enter a word: ")
-# print("_ " * (len(guess) - 1) + "_")
-
+if __name__ == "__main__":
+    main()
 
 # # Hangman drawing
 
@@ -52,7 +51,7 @@ else:
 #     |
 #     |
 #     |
-#     |
+#     |g
 #     |
 # """)
 
