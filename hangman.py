@@ -1,4 +1,4 @@
-# Classic Hangman game built with Python 3.8.3
+# Classic Hangman game built with Python 3.8.3 by Adele Angel
 
 
 def check_win(secret_word, old_letters_guessed):
@@ -81,6 +81,9 @@ def start_screen(tries):
 
     :param tries: allowed number of guesses
     :type letter_guessed: int
+
+    :return: None
+    :rtype: None
     '''
 
     HANGMAN_ASCII_ART = """    _    _
@@ -91,9 +94,72 @@ def start_screen(tries):
    |_|  |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
                         __/ |
                        |___/"""
-
     print(HANGMAN_ASCII_ART)
     print("Tries:", tries)
+
+
+def print_hangman(num_of_tries):
+    '''Recives the number of tries of the user and print the current state of the hanging man.
+
+    :param num_of_tries the number of tries of user guesses
+    :type num_of_tries int
+
+    :return: None
+    :rtype: None
+    '''
+    HANGMAN_PHOTOS = {}
+    HANGMAN_PHOTOS[0] = """
+    x-------x
+    """
+    HANGMAN_PHOTOS[1] = """
+    x-------x
+    |
+    |
+    |
+    |
+    |
+    """
+    HANGMAN_PHOTOS[2] = """
+    x-------x
+    |       |
+    |       0
+    |
+    |
+    |
+    """
+    HANGMAN_PHOTOS[3] = """
+    x-------x
+    |       |
+    |       0
+    |       |
+    |
+    |
+    """
+    HANGMAN_PHOTOS[4] = """
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |
+    |
+    """
+    HANGMAN_PHOTOS[5] = """
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |      /
+    |
+    """
+    HANGMAN_PHOTOS[6] = """
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |      / \\
+    |
+    """
+    print(HANGMAN_PHOTOS[num_of_tries])
 
 
 def main():
@@ -108,68 +174,8 @@ def main():
     print(try_update_letter_guessed(letter_guessed, old_letters_guessed))
     print('Win =', check_win(secret_word, old_letters_guessed))
     print(show_hidden_word(secret_word, old_letters_guessed))
+    print_hangman(MAX_TRIES)
 
 
 if __name__ == "__main__":
     main()
-
-# # Hangman drawing
-
-# # picture 1
-# print("Picture 1")
-# print("""    x-------x
-# """)
-
-# print("Picture 2")
-# print("""    x-------x
-#     |
-#     |
-#     |
-#     |g
-#     |
-# """)
-
-# print("Picture 3")
-# print("""    x-------x
-#     |       |
-#     |       0
-#     |
-#     |
-#     |
-# """)
-
-# print("Picture 4")
-# print("""    x-------x
-#     |       |
-#     |       0
-#     |       |
-#     |
-#     |
-# """)
-
-# print("Picture 5")
-# print("""    x-------x
-#     |       |
-#     |       0
-#     |      /|\\
-#     |
-#     |
-# """)
-
-# print("Picture 6")
-# print("""    x-------x
-#     |       |
-#     |       0
-#     |      /|\\
-#     |      /
-#     |
-# """)
-
-# print("Picture 7")
-# print("""    x-------x
-#     |       |
-#     |       0
-#     |      /|\\
-#     |      / \\
-#     |
-# """)
