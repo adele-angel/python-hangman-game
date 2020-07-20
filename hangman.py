@@ -76,7 +76,14 @@ def check_valid_input(letter_guessed, old_letters_guessed):
     return letter_guessed.isalpha() and len(letter_guessed) == 1
 
 
-HANGMAN_ASCII_ART = """    _    _
+def start_screen(tries):
+    ''''Prints allowed number of tries and opening screen art.
+
+    :param tries: allowed number of guesses
+    :type letter_guessed: int
+    '''
+
+    HANGMAN_ASCII_ART = """    _    _
    | |  | |
    | |__| | __ _ _ __   __ _ _ __ ___   __ _ _ __
    |  __  |/ _' | '_ \ / _' | '_ ' _ \ / _' | '_ \\
@@ -85,16 +92,16 @@ HANGMAN_ASCII_ART = """    _    _
                         __/ |
                        |___/"""
 
+    print(HANGMAN_ASCII_ART)
+    print("Tries:", tries)
+
 
 def main():
     MAX_TRIES = 6
+    start_screen(MAX_TRIES)
+
     old_letters_guessed = ["p", "o", "g", "a"]
     secret_word = "potato"
-
-    # Print opening screen
-    print(HANGMAN_ASCII_ART)
-    # Print number of tries
-    print("Tries:", MAX_TRIES)
 
     # Get user guess
     letter_guessed = input("Guess a letter: ").lower()
