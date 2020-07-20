@@ -54,13 +54,16 @@ def try_update_letter_guessed(letter_guessed, old_letters_guessed):
     :returns: if the current guessed letter is valid and not included in the list of the guessed letters
     :rtype: bool
     '''
-    if check_valid_input(letter_guessed, old_letters_guessed) and not letter_guessed in old_letters_guessed:
+    if not check_valid_input(letter_guessed, old_letters_guessed):
+        print('X')
+        return False
+    elif letter_guessed in old_letters_guessed:
+        print('X')
+        print(' -> '.join(sorted(old_letters_guessed)))
+        return False
+    else:
         old_letters_guessed.append(letter_guessed)
         return True
-    print('X')
-    if letter_guessed in old_letters_guessed:
-        print(" -> ".join(sorted(old_letters_guessed)))
-    return False
 
 
 def check_valid_input(letter_guessed, old_letters_guessed):
@@ -108,21 +111,13 @@ def print_hangman(num_of_tries):
     :rtype: None
     '''
     HANGMAN_PHOTOS = {}
-    HANGMAN_PHOTOS[0] = """
-    x-------x
-    """
     HANGMAN_PHOTOS[1] = """
     x-------x
-    |
-    |
-    |
-    |
-    |
     """
     HANGMAN_PHOTOS[2] = """
     x-------x
-    |       |
-    |       0
+    |
+    |
     |
     |
     |
@@ -131,7 +126,7 @@ def print_hangman(num_of_tries):
     x-------x
     |       |
     |       0
-    |       |
+    |
     |
     |
     """
@@ -139,7 +134,7 @@ def print_hangman(num_of_tries):
     x-------x
     |       |
     |       0
-    |      /|\\
+    |       |
     |
     |
     """
@@ -148,10 +143,18 @@ def print_hangman(num_of_tries):
     |       |
     |       0
     |      /|\\
-    |      /
+    |
     |
     """
     HANGMAN_PHOTOS[6] = """
+    x-------x
+    |       |
+    |       0
+    |      /|\\
+    |      /
+    |
+    """
+    HANGMAN_PHOTOS[7] = """
     x-------x
     |       |
     |       0
@@ -166,15 +169,23 @@ def main():
     MAX_TRIES = 6
     start_screen(MAX_TRIES)
 
-    old_letters_guessed = ["p", "o", "g", "a"]
-    secret_word = "potato"
+    num_of_tries = 0
 
-    # Get user guess
-    letter_guessed = input("Guess a letter: ").lower()
-    print(try_update_letter_guessed(letter_guessed, old_letters_guessed))
-    print('Win =', check_win(secret_word, old_letters_guessed))
-    print(show_hidden_word(secret_word, old_letters_guessed))
-    print_hangman(MAX_TRIES)
+    secret_word = "potato"
+    old_letters_guessed = []
+
+    # Game loop
+    while num_of_tries <= MAX_TRIES:
+        print("\n" + show_hidden_word(secret_word, old_letters_guessed) + "\n")
+        letter_guessed = input("Guess a letter: ").lower()
+        if try_update_letter_guessed(letter_guessed, old_letters_guessed) and not letter_guessed in secret_word:
+            num_of_tries += 1
+            print_hangman(num_of_tries)
+        show_hidden_word(secret_word, old_letters_guessed)
+        if check_win(secret_word, old_letters_guessed):
+            print("You Won!")
+            return
+    print("You Lost :(")
 
 
 if __name__ == "__main__":
